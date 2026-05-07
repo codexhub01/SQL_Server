@@ -16,9 +16,52 @@ set single_user
 with rollback immediate;
 drop database sample_db
 
-create table newtable -- tocreate table
+create table newtable -- to create table
 (
 	Id int,
 	Name varchar(100),
 	Department varchar(30)
 );
+
+insert into newtable --to insert single data
+values(1,'Mayank','IT');
+
+insert into newtable --to insert multiple data
+values(2,'Om','Nontech') , (3,'Roy','CSE');
+
+select * from newtable --to view data from table
+
+update newtable set Department='Foodlab' where Id=3 --toupdate in db'
+
+delete from newtable where id=2 -- to delete from db
+
+delete from newtable --to delete all from db
+
+drop table newtable -- to delete that table permanently
+
+alter table newtable --to add new column
+add salary int
+
+alter table newtable --to add remove column
+drop column salary
+
+
+exec sp_rename 'newtable.salary','empsalary' , 'Column' --to rename column name
+
+create table defaultvaluetable --to create some kind of column with some kind of default value
+(
+	ID int,
+	Name varchar(50),
+	Status varchar(50) default 'active'
+);
+
+
+
+
+
+
+
+
+
+
+
