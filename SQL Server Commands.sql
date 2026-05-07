@@ -16,3 +16,9 @@ set single_user
 with rollback immediate;
 drop database sample_db
 
+create table newtable -- tocreate table
+(
+	Id int,
+	Name varchar(100),
+	Department varchar(30)
+);
