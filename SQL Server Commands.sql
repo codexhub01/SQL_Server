@@ -55,13 +55,49 @@ create table defaultvaluetable --to create some kind of column with some kind of
 	Status varchar(50) default 'active'
 );
 
+insert into defaultvaluetable(Id , Name) --to insert data into specific columns and default value will automatically insert into rest column
+values(1,'Car Engine')
 
+alter table defaultvaluetable
+add constraint roy
+default value for name
 
+CREATE TABLE Departments
+(
+    DepartmentId INT PRIMARY KEY,
+    DepartmentName VARCHAR(100)
+);
 
+CREATE TABLE Employees
+(
+    EmployeeId INT PRIMARY KEY,
+    Name VARCHAR(100),
+    DepartmentId INT
+    FOREIGN KEY REFERENCES Departments(DepartmentId) --to create cascading refrential integrity
+    ON DELETE CASCADE
+);
 
+INSERT INTO Departments (DepartmentId, DepartmentName)
+VALUES
+(1, 'HR'),
+(2, 'IT'),
+(3, 'Finance'),
+(4, 'Marketing');
 
+INSERT INTO Employees (EmployeeId, Name, DepartmentId)
+VALUES
+(101, 'Mayank', 2),
+(102, 'Rahul', 1),
+(103, 'Sneha', 3),
+(104, 'Aman', 2),
+(105, 'Priya', 4),
+(106, 'Karan', 1);
 
+DELETE FROM Departments
+WHERE DepartmentId = 1;
 
+--FOREIGN key references departments(DepartmentId)
+--on updated cascade
 
 
 
