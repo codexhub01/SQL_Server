@@ -109,3 +109,14 @@ CREATE TABLE empdata --to add contsrint for a column which means there are some 
 INSERT INTO Employees
 VALUES (2, 'Rahul', 15);
 
+CREATE TABLE identitytbl --to add indentity for some kind of specific column in which values got increment automatically by some no which we write over there
+(
+    Id INT IDENTITY(1,1),
+    Name VARCHAR(100)
+);
+
+INSERT INTO identitytbl(Name)
+VALUES ('roy');
+
+set identity_insert identitytbl ON --this means that now we can insert our custom value into that column by themself 
+set identity_insert identitytbl OFF --this means that now we can't insert our custom value into that column by themself 
