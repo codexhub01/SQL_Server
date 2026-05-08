@@ -99,5 +99,13 @@ WHERE DepartmentId = 1;
 --FOREIGN key references departments(DepartmentId)
 --on updated cascade
 
+CREATE TABLE empdata --to add contsrint for a column which means there are some kind of condition on which base data is going to enter
+(
+    Id INT,
+    Name VARCHAR(100),
+    Age INT CHECK (Age >= 18)
+);
 
+INSERT INTO Employees
+VALUES (2, 'Rahul', 15);
 
