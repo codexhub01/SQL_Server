@@ -29,7 +29,7 @@ values(1,'Mayank','IT');
 insert into newtable --to insert multiple data
 values(2,'Om','Nontech') , (3,'Roy','CSE');
 
-select * from newtable --to view data from table
+select * from identitytbl --to view data from table
 
 update newtable set Department='Foodlab' where Id=3 --toupdate in db'
 
@@ -109,14 +109,21 @@ CREATE TABLE empdata --to add contsrint for a column which means there are some 
 INSERT INTO Employees
 VALUES (2, 'Rahul', 15);
 
-CREATE TABLE identitytbl --to add indentity for some kind of specific column in which values got increment automatically by some no which we write over there
+CREATE TABLE identitytbl1 --to add indentity for some kind of specific column in which values got increment automatically by some no which we write over there
 (
     Id INT IDENTITY(1,1),
     Name VARCHAR(100)
 );
 
-INSERT INTO identitytbl(Name)
-VALUES ('roy');
+INSERT INTO identitytbl1(Name)
+VALUES ('non'),
+('abc');
 
 set identity_insert identitytbl ON --this means that now we can insert our custom value into that column by themself 
 set identity_insert identitytbl OFF --this means that now we can't insert our custom value into that column by themself 
+
+select SCOPE_IDENTITY() --it will give last generated value in a that session or ssope
+
+select @@IDENTITY()
+
+select IDENT_CURRENT('identitytbl') :- --it can give u of any session or any table
