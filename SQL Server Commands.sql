@@ -127,3 +127,16 @@ select SCOPE_IDENTITY() --it will give last generated value in a that session or
 select @@IDENTITY()
 
 select IDENT_CURRENT('identitytbl') :- --it can give u of any session or any table
+
+CREATE TABLE uniquetbl --to add unique constraint for a column in a table
+(
+    Id INT,
+    Email VARCHAR(100) UNIQUE
+);
+
+INSERT INTO uniquetbl
+VALUES (1, 'mayank@gmail.com');
+
+INSERT INTO uniquetbl
+VALUES (1, 'mayank@gmail.com');
+
