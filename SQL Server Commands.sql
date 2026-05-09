@@ -1,4 +1,3 @@
-
 create database sample_db --To create db
 
 use sample_db --to use any db
@@ -139,4 +138,125 @@ VALUES (1, 'mayank@gmail.com');
 
 INSERT INTO uniquetbl
 VALUES (1, 'mayank@gmail.com');
+
+create table groupingtable
+(
+    Id int,
+    Username varchar(max),
+    designation varchar(max)
+);
+
+insert into join1
+values(5,'danny' , 'unknown'),(6,'dj','actor')
+
+select * from groupingtable
+
+select username , count(*) from groupingtable group by Username --to gorup stuffs based on somethinng
+
+select username , count(*) from groupingtable group by Username having count(*) <3 --having with group by
+
+create table join2
+(
+    Id int,
+    Username varchar(max),
+   
+);
+
+select join1.designation , join2.Username from join1 -- inner join only return matching records from both table
+inner join join2
+on join1.id = join2.Id
+
+/*
+    left join :-
+    
+    -> Return all rows from left table matching all rows from right table
+    -> If no match return null
+    -> table which is using with from that's a left table
+*/
+
+select join1.designation , join2.Username from join1
+left join join2
+on join1.id = join2.Id
+
+/*
+    right join :-
+    
+    -> Return all rows from right table matching all rows from left table
+    -> If no match return null
+    -> table which is using with from that's a right table
+*/
+
+
+select join1.designation , join2.Username from join1
+right join join2
+on join1.id = join2.Id
+
+/*
+    full join :-
+    
+    -> Return all rows from both table , which are matched those will get combines & if something is unmatched also then it will show data of that table which have data and forn column of those table which do not have data for them it will give NULL
+    -> table which is using with from that's a right table
+*/
+
+SELECT join1.designation,
+       join2.Username
+FROM join1
+FULL JOIN join2
+ON join1.id = join2.Id;
+
+/*
+    Why alisa is used
+
+    -> basically for shorted queries
+    -> readibility
+    -> easier joins
+*/
+
+SELECT j1.designation,
+       j2.Username
+FROM join1 j1
+inner join join2 j2
+ON j1.id = j2.Id;
+
+/*
+    Self Join :-
+
+    -> When table join with itself
+*/
+
+SELECT j1.designation,
+       j1.Username
+FROM join1 j1
+left join join1 j2
+ON j1.id = j2.Id;
+
+/*
+    Cross Join :-
+    
+    -> Cartesian product every row with every row
+*/
+
+select * from join1
+cross join join2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
