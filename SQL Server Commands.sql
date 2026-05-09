@@ -239,14 +239,34 @@ ON j1.id = j2.Id;
 select * from join1
 cross join join2
 
+/*
+    What is null :-
 
+    -> value missing
+    -> unknown value
+    -> no data availiable
+    
+    Most common replacement null methods :-
+    -> ISNULL()
+    -> COALESCE()
+    -> CASE()
+*/
 
+/*
+    ISNULL() :- replace null with specified values
+*/
 
+select Username , ISNULL(designation , 'Upper level') as Desg from join1
 
+/*
+    COALESCE() :- return first non-null value
 
+    It can have any number of parameters
 
+    Most aggregate functions ignore null
+*/
 
-
+select Username , coalesce(designation , 'Upper level') as Desg from join1
 
 
 
