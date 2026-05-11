@@ -372,8 +372,23 @@ select cast(getdate() as date)
 select convert(varchar , getdate() , 103) --to convert type but in take care of styling too
 
 
+/*
 
+    Mathematical functions :- Built in sql server functions used for some type of performing calculations
+*/
 
+select ABS(-100) -- to convert value into positive
 
+select CEILING(10.77) -- menas it will give int next value
 
+select FLOOR(21.99) --give value which is before point
 
+select ROUND(100231.218932 , 2) --give round value upto particular given number after ,
+
+select POWER(3,4) -- basically multiplies first no by the times second no given
+
+select sqrt(25) --to find sqaureroot
+
+select RAND() --to generate random no
+
+select SIGN(-199) --check sign of a number
