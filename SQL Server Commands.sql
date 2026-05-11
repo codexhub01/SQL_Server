@@ -354,7 +354,23 @@ select CONCAT('Mayank' , '       ' , 'Pal') -- to concate strings
 
 select LEFT('omkara',2) -- to get characters from left
 
-select right('vinay','4) -- get characters from right
+select right('vinay','4') -- get characters from right
+
+/*
+
+    Cast & Convert :- Both funtioncs are used to change data type from one type to another
+
+    but cast does not give option for styling , instead convert gives styling too
+*/
+
+select cast(1000 as varchar)
+
+select cast('882' as int)
+
+select cast(getdate() as date)
+
+select convert(varchar , getdate() , 103) --to convert type but in take care of styling too
+
 
 
 
