@@ -327,6 +327,35 @@ END
 
 EXEC sp_GetEmployeeById 1; --to execute procedure when it requires some kind of parameter
 
+/*
+    String Functions :- In built sql server functions used to manipulate text/string data
+
+*/
+
+select len('Mayank') -- to check length
+
+select UPPER('mayank') -- to convert into upper
+
+select lower('Mayank') --to convert it into lower
+
+select SUBSTRING('shivayee',1,4) -- to get substring
+
+select LTRIM('           omkara') --to remove space from left side
+
+select RTRIM('gaurav              ') --to remove space from right
+
+select TRIM('                  trim            ') -- to remove space from both side
+
+select REPLACE('shivayee roy ' , 'roy' , 'singh oberoi') -- to replace some kind of string with something
+
+select CHARINDEX('@','mayankpal55@gmail.com') --to find index of given character
+
+select CONCAT('Mayank' , '       ' , 'Pal') -- to concate strings
+
+select LEFT('omkara',2) -- to get characters from left
+
+select right('vinay','4) -- get characters from right
+
 
 
 
