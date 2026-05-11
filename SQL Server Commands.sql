@@ -301,11 +301,31 @@ select id , username from join1
 union all
 select id , username from join2
 
+/*
+    Stored Precoedure :- It's a precompiled collection of sql statemnts stored inside database
 
+    Note :- Input vs Ouput Pending
+*/
 
+CREATE PROCEDURE sp_GetEmployees -- to create a procedure
+AS
+BEGIN
+    SELECT *
+    FROM Employees;
+END
 
+exec sp_GetEmployees --to execute
 
+CREATE PROCEDURE sp_GetEmployeeById --to create stored procedure with parameter
+    @Id INT
+AS
+BEGIN
+    SELECT *
+    FROM Employees
+    WHERE Id = @Id;
+END
 
+EXEC sp_GetEmployeeById 1; --to execute procedure when it requires some kind of parameter
 
 
 
