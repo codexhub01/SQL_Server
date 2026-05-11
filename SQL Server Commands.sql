@@ -392,3 +392,41 @@ select sqrt(25) --to find sqaureroot
 select RAND() --to generate random no
 
 select SIGN(-199) --check sign of a number
+
+
+/*
+    Scalar user defined functions & Inline table valued functions & Multi statement table valued functions ( Pending )
+
+*/
+
+/*
+    Temporary Tables :- tables create to stored internmediate or temporary data
+
+    Required :-
+
+    -> Intermediate calculations
+    -> Temporary Storage
+    -> Staged data processing
+
+    There are tqo type of temporary tables :-
+    -> Local temporary table (#) :- accessible only within current session or connection
+       automatically deleted when session cloees
+    -> global temporary table (##) :- access multiple session or users
+
+*/
+
+create table #temptable2 -- to create temprorary table which is in local storage
+(
+    Id int,
+    designation varchar(100)
+);
+
+INSERT INTO ##temptable3
+VALUES (1, 'CTO');
+
+create table ##temptable3 -- to create temprorary table which is in global storage
+(
+    Id int,
+    designation varchar(100)
+);
+
