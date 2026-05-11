@@ -269,6 +269,38 @@ select Username , ISNULL(designation , 'Upper level') as Desg from join1
 select Username , coalesce(designation , 'Upper level') as Desg from join1
 
 
+/*
+    Union :-
+
+    -> It's used to combine multiple select queries into single set result
+    -> It removes duplicate automatically
+    
+    Why Required :-
+
+    somtime data exist in multiple tables or multiple queries
+
+*/
+
+select id , username from join1
+union
+select id , username from join2
+
+/*
+    Union all :-
+
+    -> It's used to combine multiple select queries into single set result
+    -> It do not removes duplicate automatically
+    
+    Why Required :-
+
+    somtime data exist in multiple tables or multiple queries
+
+*/
+
+select id , username from join1
+union all
+select id , username from join2
+
 
 
 
