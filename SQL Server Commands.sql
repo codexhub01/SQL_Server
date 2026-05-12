@@ -472,3 +472,69 @@ SELECT e.Name,
 FROM Employees e
 INNER JOIN Departments d
 ON e.DepartmentId = d.DepartmentId;
+
+
+/*
+    
+    Trigger :- 
+    -> A trigger is a special type of store procedure that executes automatically when a specific database events occurs
+    -> cannot call directly
+    -> These triggers executes automatically when :-
+    1. Insert
+    2. Update
+    3. Delete
+    operations occur on a table
+
+    Types of DML Triggers :-
+    -> After Trigger ( after operation )
+    -> Instead of trigger ( replaces operation )
+
+*/
+
+create trigger tr_aftertrigger --to create trigger which will get hit after data inserted into table
+on newtable
+after insert
+as
+begin
+print 'Employee inserted successfully'
+end
+
+INSERT INTO newtable
+VALUES (1, 'Mayank' , 'CTO');
+
+
+create trigger tr_after_update_trigger --to create trigger which will get hit after data update into table
+on newtable
+after update
+as
+begin
+print 'Employee inserted successfully'
+end
+
+create trigger tr_after_delete_trigger --to create trigger which will get hit after data something deleted from table
+on newtable
+after delete
+as
+begin
+print 'Employee inserted successfully'
+end
+
+CREATE TRIGGER tr_PreventDelete --basically in place of some kind of operation , we perform some other operation
+ON newtable
+INSTEAD OF DELETE
+AS
+BEGIN
+
+    PRINT 'Delete Not Allowed'
+
+END
+
+disable trigger tr_PreventDelete -- to disable trigger
+on newtable 
+
+
+enable trigger tr_PreventDelete -- to enable trigger
+on newtable 
+
+
+drop trigger tr_PreventDelete -- to drop trigger
