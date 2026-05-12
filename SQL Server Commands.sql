@@ -568,17 +568,28 @@ select * from newtable_cte
 */
 
 /*
-    EXIST :- It's used to check whether a subquery returns any row
-
-
-
+    Order by :- means ordering something based on something condition or just by using asec or dsec
 
 */
 
+select * from newtable2
+order by id desc
 
+/*
+    Offset Fetch :- 
 
+    -> It's used for pagination , skipping rows & fetching limited rows
+    -> basically speicific rows skip karke limited rows fetch karna
 
+*/
 
+select * from sales.orders
+
+SELECT customer_id -- basically it will skips 2 rows here which are at the starting and fertch next 3 rows and order by is verey imp over here
+FROM sales.orders
+ORDER BY customer_id
+OFFSET 2 ROWS
+FETCH NEXT 3 ROWS only;
 
 
 
