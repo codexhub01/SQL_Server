@@ -15,14 +15,14 @@ set single_user
 with rollback immediate;
 drop database sample_db
 
-create table newtable -- to create table
+create table newtable2 -- to create table
 (
 	Id int,
 	Name varchar(100),
 	Department varchar(30)
 );
 
-insert into newtable --to insert single data
+insert into newtable2 --to insert single data
 values(1,'Mayank','IT');
 
 insert into newtable --to insert multiple data
@@ -538,3 +538,25 @@ on newtable
 
 
 drop trigger tr_PreventDelete -- to drop trigger
+
+/*
+
+    Derived tables & CTE ( common table expression )
+
+    Derived tables :-
+    -> A temproray result set created inside from clause using a subquery
+
+    CTE :-
+    -> temporary named result set used within a query
+
+*/
+
+select * -- this is something called derived table
+from(
+select * from newtable2) as newtable
+where Name='Mayank'
+
+with newtable_cte -- basically its create a temporary table but that need to be used immediately
+as
+(select * from newtable2)
+select * from newtable_cte
