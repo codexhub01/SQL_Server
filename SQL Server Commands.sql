@@ -431,12 +431,30 @@ create table ##temptable3 -- to create temprorary table which is in global stora
 );
 
 /*
-    Indexes :- It's a database object used to improve data retrieval/query performance
+    Indexes :- 
     
-    -> Basically its fasten up our searches
+    1. It's a database object used to improve data retrieval/query performance
+    2. Indexes improve select but impact on insert , delete , update & etc
+    3. Basically its fasten up our searches
 
     Types Of Indexes :-
-    -> Clustered Index
+    -> Clustered Index :- 
+    1. It means table data physically sorted hota hai
+                          only one clustedred index allowed per table because table data can physically sort only one way
+    2. Usually create on primary key & identity column                     
+    3. Primary key automatically create clustered index by default
+
     -> Non-Clustered Index
 
 */
+
+create table emp_data
+(
+    Id int,
+    name varchar(max),
+    address varchar(max)
+);
+
+create clustered index IX_emp_data_id
+on emp_data(Id)
+
