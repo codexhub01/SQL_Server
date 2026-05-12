@@ -430,3 +430,13 @@ create table ##temptable3 -- to create temprorary table which is in global stora
     designation varchar(100)
 );
 
+/*
+    Indexes :- It's a database object used to improve data retrieval/query performance
+    
+    -> Basically its fasten up our searches
+
+    Types Of Indexes :-
+    -> Clustered Index
+    -> Non-Clustered Index
+
+*/
