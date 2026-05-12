@@ -548,6 +548,7 @@ drop trigger tr_PreventDelete -- to drop trigger
 
     CTE :-
     -> temporary named result set used within a query
+    -> recursive cte is for hirerichal data
 
 */
 
@@ -560,3 +561,27 @@ with newtable_cte -- basically its create a temporary table but that need to be 
 as
 (select * from newtable2)
 select * from newtable_cte
+
+/*
+    Database normalization :- Its a process of organizing data into proper related tables 
+    -> basically duplicate data ko reduce karke database ko properly structure karna
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
