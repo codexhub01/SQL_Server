@@ -565,10 +565,15 @@ select * from newtable_cte
 /*
     Database normalization :- Its a process of organizing data into proper related tables 
     -> basically duplicate data ko reduce karke database ko properly structure karna
-
 */
 
+/*
+    EXIST :- It's used to check whether a subquery returns any row
 
+
+
+
+*/
 
 
 
