@@ -448,9 +448,9 @@ create table ##temptable3 -- to create temprorary table which is in global stora
 
 */
 
-create table emp_data
+create table emp_data3
 (
-    Id int,
+    id int,
     name varchar(max),
     address varchar(max)
 );
@@ -458,3 +458,17 @@ create table emp_data
 create clustered index IX_emp_data_id
 on emp_data(Id)
 
+/*
+    View :- 
+    -> A virtual table created from one or more table using select query
+    -> It does not have any paramter but stored procedure have
+    -> mainly select logic but stored procedure support all operations
+*/
+
+CREATE VIEW vw_EmployeeDetails -- to create view
+AS
+SELECT e.Name,
+       d.DepartmentName
+FROM Employees e
+INNER JOIN Departments d
+ON e.DepartmentId = d.DepartmentId;
