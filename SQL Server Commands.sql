@@ -591,6 +591,12 @@ ORDER BY customer_id
 OFFSET 2 ROWS
 FETCH NEXT 3 ROWS only;
 
+/*
+    Select Top :- It's used to retrieve specific number of rows from a table
+
+*/
+
+select top 1 first_name from sales.customers
 
 
 
