@@ -596,11 +596,36 @@ FETCH NEXT 3 ROWS only;
 
 */
 
+select * from sales.customers
+
 select top 1 first_name from sales.customers
 
+select distinct first_name from sales.customers -- to get distinct values
 
+select * from sales.customers where customer_id>8 --where condition to filter
 
+select * from sales.customers where customer_id>2 and customer_id<=10 -- And operator means both needs to be true
 
+select * from sales.customers where customer_id>2 or customer_id<=10 -- OR operator means any one needs to be true aleast
+
+select * from sales.customers where customer_id in (10 , 20) -- In means values which are present from these
+
+select * from sales.customers where customer_id between 10 and 20 -- Between gives data which are present between both of given values and both are also included
+
+/*
+    Like :- used to search for a specified pattern in a column
+
+    -> We used wildcards with LIKE :-
+        1. ( % ) :- zero or more character ( means from where % will start , from there can be any number of characters )
+        2. ( _ ) :- exactly one character ( means exactly one character should be only there )
+     
+*/
+
+select * from sales.customers where email like 'rob%' -- this means an email starts with rob
+
+select * from sales.customers where email like '%yahoo.com' -- this means an email ends with yahoo
+
+select * from sales.customers where first_name like 'B__' -- this only number of spaces defined
 
 
 
