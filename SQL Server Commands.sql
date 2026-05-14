@@ -657,3 +657,20 @@ WHERE customer_id > ALL
     WHERE zip_code>500
 );
 
+/*
+    INTERSECT :- returns only common rows present in both query result
+    -> Automatically removed duplicates
+*/
+
+SELECT *
+FROM sales.customers
+
+INTERSECT
+
+SELECT *
+FROM sales.customers;
+
+/*
+    EXCEPT :- means it will give result from first query only but except those whoch are in a result got from subquery 
+
+*/
