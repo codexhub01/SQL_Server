@@ -627,8 +627,33 @@ select * from sales.customers where email like '%yahoo.com' -- this means an ema
 
 select * from sales.customers where first_name like 'B__' -- this only number of spaces defined
 
+/*
 
+    ANY :- compare a value with values returned by subquery
+    -> basically it means result which we get rfom outside query which is written before any from it result going to compare from data which we get from subquery which is written inside ANY
 
+*/
 
+SELECT * -- but yeah over here if any condition true then ok
+FROM sales.customers
+WHERE customer_id > ANY
+(
+    SELECT customer_id
+    FROM sales.customers
+    WHERE zip_code>500
+);
 
+/*
+  ALL :- in this case every condition should matched
+
+*/
+
+SELECT * -- but yeah over here if all condition need to be true
+FROM sales.customers
+WHERE customer_id > ALL
+(
+    SELECT customer_id
+    FROM sales.customers
+    WHERE zip_code>500
+);
 
