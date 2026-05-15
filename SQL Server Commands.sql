@@ -674,3 +674,103 @@ FROM sales.customers;
     EXCEPT :- means it will give result from first query only but except those whoch are in a result got from subquery 
 
 */
+
+/*
+    PIVOT ( Pending ) :- It's used to transform rolws into cloumns
+*/
+
+/*
+    INSERT :- It's used to add rows into a table
+
+    -> It's DML ( data manipulatin language ) command
+    -> You can insert specific values too in specific columns , instead of inserting values into all columns
+*/
+
+/*
+    Update :- 
+    
+    -> modify existing records into a table
+    -> It's DML command too
+
+*/
+
+update sales.customers set first_name='Mayank' where customer_id=5
+
+UPDATE sales.customers
+SET first_name = 'heeji aap kaun'
+OUTPUT inserted.*, deleted.*;
+
+/*
+    Merge :- to perform insert , update & delete operations in a single statement
+
+*/
+
+/*
+    Transaction :- 
+    
+    -> a group of operations executed in a single unit of work
+    -> In this all operations will get succesd or get fails
+    -> Start Transaction :- Begin Transaction
+    -> Commit Transaction :- Commit
+    -> Rollback Transaction :- Rollback
+    -> First it write longs then data ( WAL )
+
+    ACID properties :-
+    1. Atomicity :- Either complete success or complete failure
+    2. Consistency :- Datbaase remains vaid before & after transaction
+    3. Isolation :- Transaction should not interfere with each other
+    4. Durability :- commited data survives during crash , restart & power failure
+
+    After commit rollback is not possible
+
+    Dirty Read :- let suppose transaction A updates salary but does not commit and transaction B reads that updated salary but now Transaction A have roll back that , so for now Transaction B reads invalid data
+*/
+
+CREATE TABLE Accounts
+(
+    Id INT PRIMARY KEY,
+    AccountHolderName VARCHAR(100),
+    Balance DECIMAL(10,2)
+);
+
+INSERT INTO Accounts (Id, AccountHolderName, Balance)
+VALUES
+(1, 'Mayank', 25000.00),
+(2, 'Rahul', 15000.00),
+(3, 'Aman', 30000.00),
+(4, 'Neha', 12000.00);
+
+SELECT * FROM Accounts;
+
+BEGIN TRANSACTION;
+
+UPDATE Accounts
+SET Balance = Balance - 5000
+WHERE Id = 1;
+
+UPDATE Accounts
+SET Balance = Balance + 5000
+WHERE Id = 2;
+
+COMMIT;
+
+BEGIN TRANSACTION;
+
+UPDATE Accounts
+SET Balance = Balance - 5000
+WHERE Id = 1;
+
+ROLLBACK;
+
+
+BEGIN TRANSACTION; -- here partial roll back done & we are saving data at some point
+
+UPDATE sales.customers
+SET customer_id = customer_id + 1000;
+
+SAVE TRANSACTION BeforeDelete;
+
+DELETE FROM sales.customers
+WHERE customer_id = 5;
+
+ROLLBACK TRANSACTION BeforeDelete;
