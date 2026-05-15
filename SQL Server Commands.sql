@@ -774,3 +774,27 @@ DELETE FROM sales.customers
 WHERE customer_id = 5;
 
 ROLLBACK TRANSACTION BeforeDelete;
+
+/*
+    CREATE SCHEMA :- This is something which we can create our custom to , if we are not creating something custom too then its use bydefault one which is dbo.something
+
+    And in this case we run queries in simpler way without using schema name
+
+    dbo :- database owner which is by default
+
+    select * from employees
+
+*/
+
+/*
+    Sequence :- 
+    
+    -> A database object used to generate sequential numeric values
+    -> It automatically generates numbers and independently from tables
+*/
+
+CREATE SEQUENCE sample_sequence -- to create sequence
+START WITH 1
+INCREMENT BY 1;
+
+select next value for sample_sequence -- getting next sequence value
