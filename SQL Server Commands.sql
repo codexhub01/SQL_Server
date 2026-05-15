@@ -798,3 +798,46 @@ START WITH 1
 INCREMENT BY 1;
 
 select next value for sample_sequence -- getting next sequence value
+
+/*
+    Primary Key :- 
+
+    -> uniquely identifies each row in a table
+    -> does not allow null values
+    -> automatically creates unique index
+    -> one primary key per table
+
+    Composite primary key :-
+    -> primary key can contains multiple columns together
+
+    Unique key :-
+    -> multiple allowed
+    -> one null aloowed
+    -> ensure uniqueness
+
+*/
+CREATE TABLE OrderDetails
+(
+    OrderId INT,
+    ProductId INT,
+
+    PRIMARY KEY(OrderId, ProductId)
+);
+
+/*
+    Row_number() :- It's used to assign a unique sequential number to each row
+
+
+*/
+
+select * from sales.order_items
+
+SELECT product_id, -- Here rownumber() ovr gives unique sequential number to each row
+       list_price,
+
+       ROW_NUMBER() OVER
+       (
+           ORDER BY product_id DESC
+       ) AS RowNum
+
+FROM sales.order_items;
