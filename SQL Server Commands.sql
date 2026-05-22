@@ -5,7 +5,7 @@ use sample_db --to use any db
 alter database sample_db --to rename db name
 modify name = new_db;
 
-alter database sample_db -- changing database mode
+alter database sample_db -- changing database mode which is readonly and u can change it to vice versa too
 set readonly
 
 drop database sample_db --to drop database
