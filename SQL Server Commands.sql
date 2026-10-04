@@ -101,3 +101,178 @@ select * from Employees where Salary between 8000 and 50000
 select * from Employees where FirstName like 'A%'
 
 select FirstName as PhelaNaam from Employees
+
+
+/*
+
+Joins :- 
+
+-> It combines rows from different tables using a related column
+
+-> These are main type of joins :-
+
+1. Inner Join
+2. Left Join
+3. Right Join
+4. Full Outer Join
+5. Cross Join
+6. Self Join
+
+Inner Join :-
+
+-> It returns only the rows where both tables have a matching value
+
+Left Join :-
+
+-> It returns all rows from left table & matching rows from right table
+
+Right Join :-
+
+-> It returns all rows from right table & matching rows from left table
+
+Full Outer Join :-
+
+-> It returns matching rows from both tables & unmatched rows from left table & unmatched rows from right table
+
+Cross Join :-
+
+-> It creates cartesian product
+
+-> This means every row from first table combines with every row from second table
+
+Self Join :-
+
+-> It means a table join with itself
+
+-> It's not a special join , we simply use normal join keyword and give the same table two different alias
+*/
+
+select * from employees as e
+inner join departments as d
+on e.DepartmentId = d.DepartmentId
+
+select * from employees as e
+left join departments as d
+on e.DepartmentId = d.DepartmentId
+
+select * from employees as e
+right join departments as d
+on e.DepartmentId = d.DepartmentId
+
+select * from employees as e
+full outer join departments as d
+on e.DepartmentId = d.DepartmentId
+
+select * from employees as e
+cross join departments as d
+
+select * from employees as e
+join employees as e1
+on e.DepartmentId = e1.DepartmentId
+
+
+/*
+
+-> Grouping means putting rows with same value into a groups and then usually performing an aggregate calculation on each group
+
+Group By :-
+
+-> It group rows that have the same value in one or more columns
+
+-> It's commonly used with aggregate functions such as Count() , SUM() , AVG() , MIN() , MAX()
+
+Having :-
+
+-> It's used to filter groups created by group by
+
+-> Where filters individual rows , while having filters groups or aggregate results
+
+Grouping Sets :-
+
+-> It allows us to perform multiple different group by operations in single query
+
+-> When we want multiple levels of grouped summaries from the same data
+
+* CUBE & ROLLUP
+
+*/
+
+select DepartmentId , COUNT(*) as employeecount from Employees group by DepartmentId
+
+select DepartmentId , count(*) as employeecount from Employees group by DepartmentId having count(*) > 2
+
+select DepartmentId , sum(salary) as TotalSalary from Employees group by GROUPING sets ( (DepartmentId) , (Gender))
+
+
+/*
+
+-> Subquery is simply a query written inside another query
+
+-> One query use result of another query
+
+
+Correlated Subquery :-
+
+-> Its a subquery that depends on the current row of the outer query
+
+-> When the condition inside the subquery needs information from the current row of the outer query
+
+Exist :-
+
+-> It checks wheteher a subquery returns at least one row
+
+Any :-
+
+-> It compares a value with the values returned by a subquery
+
+All :-
+
+-> It compares a value with all values returned by a subquery
+
+* Cross Apply & Outer Apply
+
+*/
+
+select  * from Employees where Salary > ( select AVG(salary) from Employees )
+
+select e.FirstName , e.Salary , e.DepartmentId from Employees as e
+where e.Salary > ( select avg(e2.salary) from Employees as e2 where e2.DepartmentId = e.DepartmentId )
+
+select c.CustomerName from Customers as c
+where exists ( select 1 from orders as o where o.CustomerId = c.CustomerId )
+
+select FirstName , Salary from Employees
+where Salary > ANY ( select Salary from Employees where DepartmentId > 2 )
+
+select FirstName , Salary from Employees WHERE Salary > all ( SELECT Salary from Employees where DepartmentId > 2 )
+
+
+/*
+
+Set Operators :-
+
+-> Its used to combine the reults of multiple select queries
+
+Union :-
+
+-> It combines the results set of two or more select queries into a single result & remove duplicates
+
+Intersect :-
+
+-> It returns only the rows that are present in both result sets
+
+Except :- It returns rows from the first query that are not present in a second query
+
+*/
+
+select * from Employees where DepartmentId = 1
+union
+select * from Employees where DepartmentId = 2
+
+select * from Employees where DepartmentId = 1
+intersect
+select * from Employees where Salary > 6000
+
+select * from Employees where DepartmentId = 1
+except
+select * from Employees where Salary > 70000
