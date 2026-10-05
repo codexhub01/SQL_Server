@@ -301,3 +301,86 @@ WITH HighSalaryEmployees AS
 SELECT *
 FROM HighSalaryEmployees
 
+/*
+
+*Pivot :-
+
+-> Used to convert rows into columns and summarize the data 
+
+
+
+*/
+
+
+/*
+
+DML Operations :- Insert , Update & Delete
+
+Insert :-
+
+-> To add new rows into a table
+
+-> We insert members or data which we get from select query too
+
+Update :-
+
+-> To modify existing data in a table
+
+Update Join :-
+
+-> To update one table using information from another table
+
+Delete :-
+
+-> Used to remove one or more rows from a table
+
+Merge :-
+
+-> Which can perform insert , update & delete operations based on whether matching records exist
+
+Transaction :-
+
+-> Its a group of database operations treated as unit of work
+
+-> The main commands are Begin Transaction , Commit & Rollback
+
+-> We use it when multiple operations must either all succed or all be undone
+
+*/
+
+INSERT INTO Employees
+    (EmployeeId, FirstName, LastName, Email, Salary, DepartmentId, JoiningDate, IsActive)
+VALUES
+    (116, 'Ravi', 'Kumar', 'ravi.kumar@company.com', 65000, 1, '2026-10-05', 1);
+
+    INSERT INTO Departments (DepartmentId, DepartmentName, Location)
+VALUES
+    (7, 'Support', 'Noida'),
+    (8, 'Legal', 'Delhi');
+
+    UPDATE Employees
+SET Salary = 90000
+WHERE EmployeeId = 101;
+
+--MERGE Employees AS T
+--USING EmployeeUpdates AS S
+--    ON T.EmployeeId = S.EmployeeId
+
+--WHEN MATCHED THEN
+--    UPDATE SET T.Salary = S.Salary
+
+--WHEN NOT MATCHED THEN
+--    INSERT (EmployeeId, FirstName, Salary, DepartmentId, JoiningDate, IsActive)
+--    VALUES (S.EmployeeId, S.FirstName, S.Salary, S.DepartmentId, S.JoiningDate, S.IsActive);
+
+--BEGIN TRANSACTION;
+
+--UPDATE Accounts
+--SET Balance = Balance - 10000
+--WHERE AccountId = 1;
+
+--UPDATE Accounts
+--SET Balance = Balance + 10000
+--WHERE AccountId = 2;
+
+--COMMIT;
