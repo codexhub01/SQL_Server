@@ -276,3 +276,28 @@ select * from Employees where Salary > 6000
 select * from Employees where DepartmentId = 1
 except
 select * from Employees where Salary > 70000
+
+
+/*
+
+CTE :-
+
+-> Its a temprorary named result set that u can use withnin a single sql statement
+
+-> The main purpose is to make complex queries easier to read & organize
+
+-> Instead of putting a complicated query directly inside another query , we can intermediate result a name and then query it
+
+*Recursive CTE
+
+*/
+
+WITH HighSalaryEmployees AS
+(
+    SELECT EmployeeId, FirstName, Salary
+    FROM Employees
+    WHERE Salary > 70000
+)
+SELECT *
+FROM HighSalaryEmployees
+
