@@ -470,3 +470,110 @@ CREATE TABLE #HighSalaryEmployees
 );
 CREATE SYNONYM Emp
 FOR dbo.Employees;
+
+
+/*
+
+Constraints :- Rules which applied to a table columns to control what data can be stored
+
+-> Main constraints are :- Primary Key , Foreign key , Not null , unique , check
+    
+Primary key :-
+
+-> Its uniquely identifies each row in a table
+
+-> A primary has :-
+
+1. Must be unique 
+2. Can not contain Null
+3. A table can have only one primary key ( It  can contain multiple columns as a composite key )
+
+
+Foreign key :-
+
+-> Creates a relationship between two tables by referencing a key into another table
+
+-> We use this to main refrential integrity - preventing invalid refrences between related tables
+
+Not Null :-
+
+-> It ensures that a column must have  a value
+
+Unique :-
+
+-> It ensuresthat a column does not contain dupplicate values
+
+Check :-
+
+-> It ensures that a ue satifies a specified condition before it can stored
+*/
+
+CREATE TABLE newtable
+(
+    EmployeeId INT PRIMARY KEY,
+    FirstName VARCHAR(50)
+);
+
+CREATE TABLE newtable2
+(
+    EmployeeId INT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    DepartmentId INT,
+
+    FOREIGN KEY (DepartmentId)
+        REFERENCES newtable4(DepartmentId)
+);
+
+CREATE TABLE newtable3
+(
+    EmployeeId INT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE newtable4
+(
+    EmployeeId INT PRIMARY KEY,
+    Email VARCHAR(150) UNIQUE
+);
+
+CREATE TABLE newtable5
+(
+    EmployeeId INT PRIMARY KEY,
+    Salary DECIMAL(12,2)
+        CHECK (Salary > 0)
+);
+
+
+/*
+
+Expression :- It allows us to add logic & null handling directly inside sql queries
+
+Case :-
+
+-> It allows us to implemenet If-else logic inside a sql query
+
+Coalesce :-
+
+-> return the first non-null value from the values provided
+
+NUllIf :-
+
+-> returns null if two expressions are equal , otherwise it returnsthe rst expression
+
+
+*/
+
+SELECT FirstName, Salary,
+       CASE
+           WHEN Salary >= 80000 THEN 'High Salary'
+           ELSE 'Normal Salary'
+       END AS SalaryCategory
+FROM Employees;
+
+SELECT FirstName,
+       COALESCE(ManagerId, 0) AS ManagerId
+FROM Employees;
+
+SELECT ProductName,
+       NULLIF(StockQuantity, 0) AS StockQuantity
+FROM Products;
