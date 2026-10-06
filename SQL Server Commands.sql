@@ -577,3 +577,31 @@ FROM Employees;
 SELECT ProductName,
        NULLIF(StockQuantity, 0) AS StockQuantity
 FROM Products;
+
+
+/*
+
+Views :- It save sql query that can be used like a virtual table
+
+Creating View:-
+
+-> It creates a view based on select query
+-> A view generally does not store a seprate copy of the data , It stores the query definition
+-> Saved select query that behaves like a virtual table
+
+
+*/
+
+CREATE VIEW EmployeeSalaryView
+AS
+SELECT EmployeeId, FirstName, Salary
+FROM Employees;
+
+SELECT * -- To get list of views
+FROM sys.views;
+
+EXEC sp_rename --To rename view name
+    'EmployeeSalaryView',
+    'EmployeeSalaryReport';
+
+EXEC sp_helptext 'EmployeeSalaryView'; -- to get view information
