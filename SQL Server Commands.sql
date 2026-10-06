@@ -384,3 +384,89 @@ WHERE EmployeeId = 101;
 --WHERE AccountId = 2;
 
 --COMMIT;
+
+/*
+
+DML :- 
+
+-> Works with data inside tables
+
+DDL :-
+
+-> Works with structure or objects
+
+Create :-
+
+-> Create a new db , table , procedure or anything 
+
+Drop :- 
+
+-> It permanently removes a database
+
+Create Schema :-
+
+-> Its a logical container used to organize objects such as tables , view and etc
+
+Alter Schema :-
+
+-> Moves an object from one schema to another
+
+Identity Column :-
+
+-> It automatically generates numeric values for a column when a new row is inserted
+
+Computed Column :-
+
+-> When a column whose value is calculated automatically from other columns
+
+Truncate Table :-
+
+-> Which only removes all rows from a table while keeping table structure
+
+Rename Table :-
+
+-> To rename table name
+
+Temporary Table :-
+
+-> Its use to storeemproray data a session or procedure
+
+-> Theyare defined using #
+
+Synonym :-
+
+-> Its an alternative name(alias) for a database object
+
+*/
+
+Create database SAMPLE_DB
+
+Drop database SAMPLE_DB
+
+--CREATE SCHEMA Sales;
+
+--ALTER SCHEMA NewSchema
+--TRANSFER OldSchema.ObjectName;
+
+CREATE TABLE SampleTable
+(
+    EmployeeId INT IDENTITY(1,1),
+    FirstName VARCHAR(50)
+);
+
+CREATE TABLE Product_table
+(
+    Price DECIMAL(10,2),
+    Quantity INT,
+    TotalAmount AS (Price * Quantity)
+);
+
+exec sp_rename 'mytable1' , 'mytable2'
+
+CREATE TABLE #HighSalaryEmployees
+(
+    EmployeeId INT,
+    Salary DECIMAL(12,2)
+);
+CREATE SYNONYM Emp
+FOR dbo.Employees;
