@@ -605,3 +605,139 @@ EXEC sp_rename --To rename view name
     'EmployeeSalaryReport';
 
 EXEC sp_helptext 'EmployeeSalaryView'; -- to get view information
+
+
+/*
+
+**Indexes :-
+
+-> Its a datastructure that helps sql server finds rows fatsre instead of having to search the entire column
+
+Clustered Index :-
+
+-> Determines the physical order in which the rows of table are sorted
+
+-> A table can have only one clustered index because the rows can only have one physical ordering
+
+-> By default, SQL Server commonly creates a clustered index for a primary key unless another clustered index already exists
+
+
+
+*/
+
+CREATE CLUSTERED INDEX IX_Employees_EmployeeId
+ON Employees(EmployeeId);
+
+EXEC sp_rename --To rename index
+    'Employees.IX_Employees_Email',
+    'IX_Employees_EmailAddress',
+    'INDEX';
+
+ALTER INDEX IX_Employees_Email -- To disable index
+ON Employees
+DISABLE;
+
+/*
+
+Stored Procedure :-
+
+-> Its a predefined group of sql statements stored in sql server that can be executed whenever needed
+
+-> Parameters allows us to pass value into a stored procedure
+
+
+Variables :-
+
+-> Temprorarily stores a value while store procedure is executing
+
+
+Output Parameters :-
+
+-> It allow a stored procedure to return a value through a parameter to the calling code
+
+Control of flow statements :-
+
+-> Begin .... End
+
+Cursor :-
+
+-> It processes a query results row by row
+
+-> Instead of processing the entire result set together , sql server moves through individual rows
+
+Exception Handling :-
+
+-> Try - Catch handles run time errors
+
+Dynamic sql :-
+
+-> Means building sql statemenet at runtime & then executing it
+*/
+
+
+CREATE PROCEDURE GetAllEmployees --creating a procedure
+AS
+BEGIN
+    SELECT *
+    FROM Employees;
+END;
+
+exec GetAllEmployees -- executing procedure
+
+CREATE PROCEDURE GetEmployeeByDepartment --creating a procedure and passing values through arguments
+    @DepartmentId INT
+AS
+BEGIN
+    SELECT *
+    FROM Employees
+    WHERE DepartmentId = @DepartmentId;
+END;
+
+DECLARE @TotalEmployees INT; --variable which is going to store a value
+
+SET @TotalEmployees = 15;
+
+SELECT @TotalEmployees;
+
+
+CREATE PROCEDURE GetEmployeeCount -- creating procedure which will return some soutput using output parameter
+    @DepartmentId INT,
+    @EmployeeCount INT OUTPUT
+AS
+BEGIN
+    SELECT @EmployeeCount = COUNT(*)
+    FROM Employees
+    WHERE DepartmentId = @DepartmentId;
+END;
+
+DECLARE @Count INT; -- calling above procedure
+
+EXEC GetEmployeeCount
+    @DepartmentId = 2,
+    @EmployeeCount = @Count OUTPUT;
+
+SELECT @Count;
+
+DECLARE EmployeeCursor CURSOR FOR -- using cursor
+SELECT EmployeeId, FirstName
+FROM Employees;
+
+OPEN EmployeeCursor;
+
+FETCH NEXT FROM EmployeeCursor;
+
+-- Process rows
+
+CLOSE EmployeeCursor;
+DEALLOCATE EmployeeCursor;
+
+BEGIN TRY -- Try - Catch
+
+    SELECT 10 / 0;
+
+END TRY
+BEGIN CATCH
+
+    SELECT ERROR_MESSAGE() AS ErrorMessage;
+
+END CATCH;
