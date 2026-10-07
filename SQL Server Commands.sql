@@ -816,3 +816,43 @@ BEGIN
 
     RETURN;
 END;
+
+/*
+
+Trigger :-
+
+-> Its a database object which executes automatically when a specified evenet occurs
+
+-> Unline a stored procedure , you dont normally call a trigger using exec , sql server fires it automatically
+
+Instead Of Trigger :-
+
+-> Basically when u wanna perform some specific cusom logic on trigger
+
+AFTER
+→ Operation happens
+→ Trigger executes
+
+INSTEAD OF
+→ Trigger executes
+→ Original operation does not happen automatically
+
+*/
+
+CREATE TRIGGER trg_EmployeeDelete -- Creating trigger
+ON Employees
+AFTER DELETE
+AS
+BEGIN
+    INSERT INTO EmployeeAudit(EmployeeId, Action)
+    SELECT EmployeeId, 'DELETE'
+    FROM deleted;
+END;
+
+CREATE TRIGGER trg_PreventEmployeeDelete -- Instead Of a operation like delete , update or insert
+ON Employees
+INSTEAD OF DELETE
+AS
+BEGIN
+    PRINT 'Employee deletion is not allowed.';
+END;
