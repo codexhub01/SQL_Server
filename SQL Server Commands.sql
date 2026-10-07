@@ -741,3 +741,78 @@ BEGIN CATCH
     SELECT ERROR_MESSAGE() AS ErrorMessage;
 
 END CATCH;
+
+
+/*
+
+UserDefined Functions :-
+
+-> A scalara function which accepts input parameter and returns a single value
+
+Table Variables :-
+
+-> Its a variable that temmporarily stores rows & columns
+
+Table Valued Function :-
+
+-> Its a user defined function that returns a table instead of single value
+
+*/
+
+CREATE FUNCTION GetAnnualSalary -- userdefined function
+(
+    @MonthlySalary DECIMAL(10,2)
+)
+RETURNS DECIMAL(12,2)
+AS
+BEGIN
+    RETURN @MonthlySalary * 12;
+END;
+
+DECLARE @HighSalaryEmployees TABLE -- Table variable 
+(
+    EmployeeId INT,
+    FirstName VARCHAR(50),
+    Salary DECIMAL(10,2)
+);
+
+INSERT INTO @HighSalaryEmployees
+SELECT EmployeeId, FirstName, Salary
+FROM Employees
+WHERE Salary > 70000;
+
+SELECT *
+FROM @HighSalaryEmployees;
+
+CREATE FUNCTION GetEmployeesByDepartment -- Inline Table valued function 
+(
+    @DepartmentId INT
+)
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT EmployeeId, FirstName, Salary
+    FROM Employees
+    WHERE DepartmentId = @DepartmentId
+);
+
+CREATE FUNCTION FunctionName -- Multistatement table valued function
+(
+    @Parameter INT
+)
+RETURNS @Result TABLE
+(
+    EmployeeId INT,
+    FirstName VARCHAR(50)
+)
+AS
+BEGIN
+
+    INSERT INTO @Result
+    SELECT EmployeeId, FirstName
+    FROM Employees
+    WHERE DepartmentId = @Parameter;
+
+    RETURN;
+END;
